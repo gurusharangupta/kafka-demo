@@ -9,7 +9,7 @@ public class KafkaConsumer {
 	
 	@KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.consumer.group.id}", containerFactory = "kafkaListenerContainerFactory")
 	public void listen(String message) {
-	    System.out.println("Received Messasge in group foo: " + message.toString());
+	    System.out.println("Received String Messasge in group foo: " + message.toString());
 	}
 	
 	/*@KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.consumer.group.id}", containerFactory = "kafkaListenerContainerFactory")
