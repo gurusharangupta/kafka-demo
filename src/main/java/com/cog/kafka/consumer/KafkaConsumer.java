@@ -16,7 +16,7 @@ public class KafkaConsumer {
 	*/
 	@KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.consumer.group.id}", containerFactory = "kafkaListenerContainerFactory")
 	public void listen(Greetings message) {
-	    System.out.println("Received Messasge in group foo: " + message.getName());
+	    System.out.println("Received Json Messasge in group foo: " + message.getName());
 	}
 	
 	/*@KafkaListener(topics = "topicName")
