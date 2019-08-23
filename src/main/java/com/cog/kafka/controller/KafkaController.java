@@ -2,6 +2,8 @@ package com.cog.kafka.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,12 +17,14 @@ public class KafkaController {
 	@Autowired
 	private KafkaProducer kafkaProducer;
 
-	@GetMapping("/demo")
-	public String demo() {
+	@PostMapping("/demo")
+	public String demo(@RequestBody String message) {
 		Greetings greeting = new Greetings("Kafka working fine!","Gurusharan Gupta");
-		kafkaProducer.sendMessage(greeting);
+		kafkaProducer.sendMessage(message);
 		return "hello there";
 
 	}
+	
+	
 
 }

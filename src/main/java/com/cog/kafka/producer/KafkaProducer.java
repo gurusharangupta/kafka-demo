@@ -21,15 +21,15 @@ public class KafkaProducer {
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 
-	public void sendMessage(Greetings message) {
+	public void sendMessage(String message) {
 		
 		Map<String, Object> headers = new HashMap<>();
 		
 		headers.put(KafkaHeaders.TOPIC,topicName);
 		
-		kafkaTemplate.send(new GenericMessage<Greetings>(message,headers));
+		//kafkaTemplate.send(new GenericMessage<Greetings>(message,headers));
 		//use below line to send string values through kafka
-		//kafkaTemplate.send(topicName,"send some string values");
+		kafkaTemplate.send(topicName,message);
 
 		/*ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
 
