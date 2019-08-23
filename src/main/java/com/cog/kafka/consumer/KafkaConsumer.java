@@ -1,16 +1,21 @@
 package com.cog.kafka.consumer;
 
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
-import com.cog.kafka.model.Greetings;
-
+@Service
 public class KafkaConsumer {
 
 	
 	@KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.consumer.group.id}", containerFactory = "kafkaListenerContainerFactory")
-	public void listen(Greetings message) {
+	public void listen(String message) {
 	    System.out.println("Received Messasge in group foo: " + message.toString());
 	}
+	
+	/*@KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.consumer.group.id}", containerFactory = "kafkaListenerContainerFactory")
+	public void listen(Greetings message) {
+	    System.out.println("Received Messasge in group foo: " + message.toString());
+	}*/
 	
 	/*@KafkaListener(topics = "topicName")
 	public void listenWithHeaders(
