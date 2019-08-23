@@ -17,10 +17,17 @@ public class KafkaController {
 	@Autowired
 	private KafkaProducer kafkaProducer;
 
-	@PostMapping("/demo")
+	/*@PostMapping("/demo")
 	public String demo(@RequestBody String message) {
-		Greetings greeting = new Greetings("Kafka working fine!","Gurusharan Gupta");
 		kafkaProducer.sendMessage(message);
+		return "hello there";
+
+	}*/
+	
+	@PostMapping("/jsondemo")
+	public String jsonDemo() {
+		Greetings greeting = new Greetings("Kafka working fine!","Gurusharan Gupta");
+		kafkaProducer.sendjsonMessage(greeting);
 		return "hello there";
 
 	}

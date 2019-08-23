@@ -19,33 +19,25 @@ public class KafkaProducer {
 	private String topicName;
 
 	@Autowired
-	private KafkaTemplate<String, String> kafkaTemplate;
+	private KafkaTemplate<String, Greetings> kafkaTemplate;
 
-	public void sendMessage(String message) {
-		
+	/*public void sendMessage(String message) {
+
 		Map<String, Object> headers = new HashMap<>();
-		
-		headers.put(KafkaHeaders.TOPIC,topicName);
-		
-		//kafkaTemplate.send(new GenericMessage<Greetings>(message,headers));
-		//use below line to send string values through kafka
-		kafkaTemplate.send(topicName,message);
 
-		/*ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
+		headers.put(KafkaHeaders.TOPIC, topicName);
+		kafkaTemplate.send(topicName, message);
 
-		future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+	}*/
 
-			@Override
-			public void onSuccess(SendResult<String, String> result) {
-				System.out.println(
-						"Sent message=[" + message + "] with offset=[" + result.getRecordMetadata().offset() + "]");
-			}
+	public void sendjsonMessage(Greetings message) {
 
-			@Override
-			public void onFailure(Throwable ex) {
-				System.out.println("Unable to send message=[" + message + "] due to : " + ex.getMessage());
-			}
-		});*/
+		Map<String, Object> headers = new HashMap<>();
+
+		headers.put(KafkaHeaders.TOPIC, topicName);
+
+		kafkaTemplate.send(new GenericMessage<Greetings>(message, headers));
+
 	}
 
 }
